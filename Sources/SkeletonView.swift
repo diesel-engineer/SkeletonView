@@ -127,6 +127,7 @@ extension UIView {
         subviewsNonSkeletonables.forEach {
             $0.saveViewState()
             $0.isHidden = true
+            $0.isUserInteractionEnabled = false
         }
 
         if let root = root {

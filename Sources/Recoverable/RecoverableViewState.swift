@@ -13,12 +13,14 @@ struct RecoverableViewState {
     var cornerRadius: CGFloat
     var clipToBounds: Bool
     var isHidden: Bool
+    var isUserInteractionEnabled: Bool
     
     init(view: UIView) {
         self.backgroundColor = view.backgroundColor
         self.clipToBounds = view.layer.masksToBounds
         self.cornerRadius = view.layer.cornerRadius
         self.isHidden = view.isHidden
+        self.isUserInteractionEnabled = view.isUserInteractionEnabled
     }
 }
 
