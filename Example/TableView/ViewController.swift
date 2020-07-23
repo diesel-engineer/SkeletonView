@@ -52,7 +52,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableview.isSkeletonable = true
         transitionDurationStepper.value = 0.25
-        view.showAnimatedSkeleton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +77,10 @@ class ViewController: UIViewController {
     @IBAction func showOrHideSkeleton(_ sender: Any) {
         showOrHideSkeletonButton.setTitle((view.isSkeletonActive ? "Show skeleton" : "Hide skeleton"), for: .normal)
         view.isSkeletonActive ? hideSkeleton() : showSkeleton()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+            self.hideSkeleton()
+        }
     }
     
     @IBAction func transitionDurationStepperAction(_ sender: Any) {
