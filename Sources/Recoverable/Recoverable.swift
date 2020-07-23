@@ -33,6 +33,9 @@ extension UIView: Recoverable {
             if safeViewState.backgroundColor != self?.backgroundColor || forced {
                 self?.backgroundColor = safeViewState.backgroundColor
             }
+            if safeViewState.isHidden != self?.isHidden || forced {
+                self?.isHidden = safeViewState.isHidden
+            }
         }
     }
 }

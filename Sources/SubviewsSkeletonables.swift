@@ -7,6 +7,10 @@ extension UIView {
         return subviewsToSkeleton.filter { $0.isSkeletonable }
     }
 
+    @objc var subviewsNonSkeletonables: [UIView] {
+        return subviewsToSkeleton.filter { !$0.isSkeletonable }
+    }
+
     @objc var subviewsToSkeleton: [UIView] {
         return subviews
     }

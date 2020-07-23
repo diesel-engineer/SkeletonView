@@ -124,6 +124,10 @@ extension UIView {
         }){ subview in
             subview.recursiveShowSkeleton(skeletonConfig: config)
         }
+        subviewsNonSkeletonables.forEach {
+            $0.saveViewState()
+            $0.isHidden = true
+        }
 
         if let root = root {
             flowDelegate?.didShowSkeletons(rootView: root)
@@ -191,6 +195,7 @@ extension UIView {
         }) { subview in
             subview.recursiveHideSkeleton(reloadDataAfter: reload, transition: transition)
         }
+        subviewsNonSkeletonables.forEach { $0.recoverViewState(forced: false) }
         
         if let root = root {
             flowDelegate?.didHideSkeletons(rootView: root)
