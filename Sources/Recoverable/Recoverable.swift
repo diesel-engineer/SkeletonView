@@ -27,12 +27,15 @@ extension UIView: Recoverable {
         guard let storedViewState = viewState else { return }
         
         startTransition { [weak self] in
-            self?.layer.cornerRadius = storedViewState.cornerRadius
-            self?.layer.masksToBounds = storedViewState.clipToBounds
-            self?.isUserInteractionEnabled = storedViewState.isUserInteractionsEnabled
+            self?.layer.cornerRadius = safeViewState.cornerRadius
+            self?.layer.masksToBounds = safeViewState.clipToBounds
+            self?.isUserInteractionEnabled = safeViewState.isUserInteractionEnabled
             
             if self?.backgroundColor == .clear || forced {
                 self?.backgroundColor = storedViewState.backgroundColor
+            }
+            if safeViewState.isHidden != self?.isHidden || forced {
+                self?.isHidden = safeViewState.isHidden
             }
         }
     }
