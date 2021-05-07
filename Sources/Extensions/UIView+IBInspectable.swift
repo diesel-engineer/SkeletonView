@@ -45,7 +45,7 @@ public extension UIView {
         get { return ao_get(pkey: &ViewAssociatedKeys.skeletonCornerRadius) as? Float ?? 0.0 }
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.skeletonCornerRadius) }
     }
-
+  
     private var nonSkeletonableAutoHide: Bool {
         get { return ao_get(pkey: &ViewAssociatedKeys.autoHideNonSkeletonView) as? Bool ?? true }
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.autoHideNonSkeletonView) }

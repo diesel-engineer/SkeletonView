@@ -11,6 +11,10 @@ extension UIView {
         return subviewsToSkeleton.filter { !$0.isSkeletonable && $0.nonSkeletonHidden }
     }
 
+    @objc var subviewsNonSkeletonables: [UIView] {
+        return subviewsToSkeleton.filter { !$0.isSkeletonable && $0.nonSkeletonHidden }
+    }
+
     @objc var subviewsToSkeleton: [UIView] {
         subviews
     }
