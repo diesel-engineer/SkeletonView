@@ -12,9 +12,14 @@ Install _fastlane_ using
 ```
 [sudo] gem install fastlane -NV
 ```
-or alternatively using `brew cask install fastlane`
+or alternatively using `brew install fastlane`
 
 # Available Actions
+### bump_version
+```
+fastlane bump_version
+```
+
 ### release_current
 ```
 fastlane release_current

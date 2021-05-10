@@ -11,7 +11,15 @@ import UIKit
 extension UICollectionView: CollectionSkeleton {
     var estimatedNumberOfRows: Int {
         guard let flowlayout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
-        return Int(ceil(frame.height/flowlayout.itemSize.height))
+        return Int(ceil(frame.height / flowlayout.itemSize.height))
+        switch flowlayout.scrollDirection {
+        case .vertical:
+            return Int(ceil(frame.height / flowlayout.itemSize.height))
+        case .horizontal:
+            return Int(ceil(frame.width / flowlayout.itemSize.width))
+        default:
+            return 0
+        }
     }
     
     var skeletonDataSource: SkeletonCollectionDataSource? {
@@ -70,7 +78,7 @@ public extension UICollectionView {
         self.skeletonDataSource = dataSource
         performBatchUpdates({
             self.reloadData()
-        }) { (done) in
+        }) { done in
             completion(done)
             
         }

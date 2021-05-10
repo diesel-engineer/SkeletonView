@@ -56,6 +56,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        view.showAnimatedSkeleton()
     }
 
     @IBAction func changeAnimated(_ sender: Any) {
@@ -183,7 +184,7 @@ extension ViewController: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as! Cell
-        cell.label1.text = "cell => \(indexPath.row)"
+        cell.label1.text = "cell -> \(indexPath.row)"
         return cell
     }
 }
@@ -196,7 +197,7 @@ extension ViewController: SkeletonTableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView
             .dequeueReusableHeaderFooterView(withIdentifier: "HeaderIdentifier") as! HeaderFooterSection
-        header.titleLabel.text = "header => \(section)"
+        header.titleLabel.text = "header -> \(section)"
         return header
     }
 
@@ -207,7 +208,7 @@ extension ViewController: SkeletonTableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView
             .dequeueReusableHeaderFooterView(withIdentifier: "FooterIdentifier") as! HeaderFooterSection
-        footer.titleLabel.text = "footer => \(section)"
+        footer.titleLabel.text = "footer -> \(section)"
         return footer
     }
 }
