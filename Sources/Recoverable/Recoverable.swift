@@ -54,10 +54,14 @@ extension UILabel{
     
     override func recoverViewState(forced: Bool) {
         super.recoverViewState(forced: forced)
+        guard let safeLabelState = labelState else { return }
+
         startTransition { [weak self] in
-            self?.textColor = self?.labelState?.textColor
-            self?.text = self?.labelState?.text
-            self?.isUserInteractionEnabled = self?.labelState?.isUserInteractionsEnabled ?? false
+            self?.isUserInteractionEnabled = safeLabelState.isUserInteractionsEnabled
+
+            if safeLabelState.textColor != self?.textColor || forced {
+                self?.textColor = self?.labelState?.textColor
+            }
         }
     }
 }
@@ -75,10 +79,14 @@ extension UITextView{
     
     override func recoverViewState(forced: Bool) {
         super.recoverViewState(forced: forced)
+        guard let safeTextState = textState else { return }
+
         startTransition { [weak self] in
-            self?.textColor = self?.textState?.textColor
-            self?.text = self?.textState?.text
-            self?.isUserInteractionEnabled = self?.textState?.isUserInteractionsEnabled ?? false
+            self?.isUserInteractionEnabled = safeTextState.isUserInteractionsEnabled
+
+            if safeTextState.textColor != self?.textColor || forced {
+                self?.textColor = safeTextState.textColor
+            }
         }
     }
 }
