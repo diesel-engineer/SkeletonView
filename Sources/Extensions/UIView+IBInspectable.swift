@@ -26,6 +26,12 @@ public extension UIView {
         get { return skeletonableCornerRadius }
         set { skeletonableCornerRadius = newValue }
     }
+
+    @IBInspectable
+    var nonSkeletonHidden: Bool {
+        get { return nonSkeletonableAutoHide }
+        set { nonSkeletonableAutoHide = newValue }
+    }
     
     var isSkeletonActive: Bool {
         return status == .on || subviewsSkeletonables.contains(where: { $0.isSkeletonActive })
@@ -49,5 +55,10 @@ public extension UIView {
     private var skeletonableCornerRadius: Float {
         get { return ao_get(pkey: &ViewAssociatedKeys.skeletonCornerRadius) as? Float ?? 0.0 }
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.skeletonCornerRadius) }
+    }
+
+    private var nonSkeletonableAutoHide: Bool {
+        get { return ao_get(pkey: &ViewAssociatedKeys.autoHideNonSkeletonView) as? Bool ?? true }
+        set { ao_set(newValue, pkey: &ViewAssociatedKeys.autoHideNonSkeletonView) }
     }
 }
